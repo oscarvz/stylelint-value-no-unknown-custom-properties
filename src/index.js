@@ -11,7 +11,7 @@ export default stylelint.createPlugin(ruleName, (method, opts) => {
 	// promise any custom selectors are imported
 	const customPropertiesPromise = isMethodEnabled(method)
 		? getCustomPropertiesFromImports(importFrom)
-	: {};
+		: {};
 
 	return async (root, result) => {
 		// validate the method
@@ -19,14 +19,14 @@ export default stylelint.createPlugin(ruleName, (method, opts) => {
 			actual: method,
 			possible() {
 				return isMethodEnabled(method) || isMethodDisabled(method);
-			}
+			},
 		});
 
 		if (isMethodValid && isMethodEnabled(method)) {
 			// all custom properties from the file and imports
 			const customProperties = Object.assign(
 				await customPropertiesPromise,
-				await getCustomPropertiesFromRoot(root)
+				await getCustomPropertiesFromRoot(root),
 			);
 
 			// validate the css root
@@ -35,7 +35,7 @@ export default stylelint.createPlugin(ruleName, (method, opts) => {
 	};
 });
 
-export { ruleName }
+export { ruleName };
 
-const isMethodEnabled = method => method === true;
-const isMethodDisabled = method => method === null || method === false;
+const isMethodEnabled = (method) => method === true;
+const isMethodDisabled = (method) => method === null || method === false;

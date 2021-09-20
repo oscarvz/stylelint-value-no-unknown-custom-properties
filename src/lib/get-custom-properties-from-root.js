@@ -15,18 +15,18 @@ export default async function getCustomPropertiesFromRoot(root) {
 
 	// recursively add custom properties from @import statements
 	const importPromises = [];
-	root.walkAtRules('import', atRule => {
+	root.walkAtRules('import', (atRule) => {
 		const fileName = atRule.params.replace(/['|"]/g, '');
 		const resolvedFileName = path.resolve(sourceDir, fileName);
 		importPromises.push(getCustomPropertiesFromCSSFile(resolvedFileName));
 	});
 
-	(await Promise.all(importPromises)).forEach(propertiesFromImport => {
+	(await Promise.all(importPromises)).forEach((propertiesFromImport) => {
 		customProperties = Object.assign(customProperties, propertiesFromImport);
 	});
 
 	// for each custom property declaration
-	root.walkDecls(customPropertyRegExp, decl => {
+	root.walkDecls(customPropertyRegExp, (decl) => {
 		const { prop } = decl;
 
 		// write the parsed value to the custom property
@@ -39,7 +39,6 @@ export default async function getCustomPropertiesFromRoot(root) {
 
 // match custom properties
 const customPropertyRegExp = /^--[A-z][\w-]*$/;
-
 
 async function getCustomPropertiesFromCSSFile(from) {
 	try {

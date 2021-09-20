@@ -13,7 +13,7 @@ export default (decl, { result, customProperties }) => {
 // validate a value ast
 const validateValueAST = (ast, { result, customProperties, decl }) => {
 	if (Object(ast.nodes).length) {
-		ast.nodes.forEach(node => {
+		ast.nodes.forEach((node) => {
 			if (isVarFunction(node)) {
 				const [propertyNode, comma, ...fallbacks] = node.nodes;
 				const propertyName = propertyNode.value;
@@ -24,7 +24,10 @@ const validateValueAST = (ast, { result, customProperties, decl }) => {
 
 				// conditionally test fallbacks
 				if (fallbacks.length) {
-					validateValueAST({ nodes: fallbacks.filter(isVarFunction) }, { result, customProperties, decl });
+					validateValueAST(
+						{ nodes: fallbacks.filter(isVarFunction) },
+						{ result, customProperties, decl },
+					);
 
 					return;
 				}
@@ -35,7 +38,7 @@ const validateValueAST = (ast, { result, customProperties, decl }) => {
 					node: decl,
 					result,
 					ruleName,
-					word: String(propertyName)
+					word: String(propertyName),
 				});
 			} else {
 				validateValueAST(node, { result, customProperties, decl });
@@ -45,4 +48,5 @@ const validateValueAST = (ast, { result, customProperties, decl }) => {
 };
 
 // whether the node is a var() function
-const isVarFunction = node => node.type === 'func' && node.name === 'var' && node.nodes[0].isVariable;
+const isVarFunction = (node) =>
+	node.type === 'func' && node.name === 'var' && node.nodes[0].isVariable;

@@ -4,16 +4,12 @@ export default {
 	input: 'src/index.js',
 	output: [
 		{ file: 'index.js', format: 'cjs', sourcemap: true },
-		{ file: 'index.mjs', format: 'esm', sourcemap: true }
+		{ file: 'index.mjs', format: 'esm', sourcemap: true },
 	],
 	plugins: [
 		babel({
-			plugins: [
-				'@babel/plugin-syntax-dynamic-import'
-			],
-			presets: [
-				['@babel/env', { modules: false, targets: { node: 10 } }]
-			]
-		})
-	]
+			plugins: ['@babel/plugin-syntax-dynamic-import'],
+			presets: [['@babel/env', { modules: false, targets: { node: 10 } }]],
+		}),
+	],
 };

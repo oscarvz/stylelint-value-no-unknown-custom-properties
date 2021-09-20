@@ -116,7 +116,6 @@ objects.
 [git-url]: https://gitter.im/stylelint/stylelint
 [npm-img]: https://img.shields.io/npm/v/stylelint-value-no-unknown-custom-properties.svg
 [npm-url]: https://www.npmjs.com/package/stylelint-value-no-unknown-custom-properties
-
 [stylelint]: https://github.com/stylelint/stylelint
 [stylelint configuration]: https://github.com/stylelint/stylelint/blob/master/docs/user-guide/configuration.md#readme
-[Stylelint Value No Unknown Custom Properties]: https://github.com/csstools/stylelint-value-no-unknown-custom-properties
+[stylelint value no unknown custom properties]: https://github.com/csstools/stylelint-value-no-unknown-custom-properties
